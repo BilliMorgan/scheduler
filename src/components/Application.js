@@ -9,7 +9,7 @@ import "hooks/useVisualMode"
 import "components/Appointment/Show";
 import "components/Appointment/Empty";
 import "components/Appointment/Error";
-const {getAppointmentsForDay, getInterview} = require('helpers/selectors')
+const {getAppointmentsForDay, getInterview, getInterviewersForDay} = require('helpers/selectors')
 
 export default function Application(props) {
   const [state, setState] = useState({
