@@ -52,7 +52,7 @@ export default function Appointment(props) {
       .catch((res) => transition(ERROR_DELETE, true));
   }
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <header className="Header">{props.time}</header>
       {mode === ERROR_DELETE && (
         <Error message="It's a delete error baby" onClose={() => back()} />
