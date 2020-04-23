@@ -19,7 +19,7 @@ export default function useApplicationData() {
       Promise.resolve(axios.get("/api/appointments")),
       Promise.resolve(axios.get("/api/interviewers")),
     ]).then((all) => {
-      //console.log(all);
+      
       const [days, appointments, interviewers] = all;
       setState((prevState) => ({
         ...prevState,
@@ -32,7 +32,7 @@ export default function useApplicationData() {
 
   const updateSpots = (status) => {
     const currentDay = state.days.filter((elem) => elem.name === state.day)[0];
-    console.log(currentDay.spots);
+    
     if (status === "minus") {
       currentDay.spots -= 1;
     }
