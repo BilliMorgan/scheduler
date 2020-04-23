@@ -23,3 +23,4 @@ npm run storybook
 ```
 ## Screenschots
 !["General view"](https://github.com/BilliMorgan/scheduler/blob/master/docs/newAppointment.png?raw=true)
+!["No appointment added"](https://github.com/BilliMorgan/scheduler/blob/master/docs/generalView.png?raw=true)
