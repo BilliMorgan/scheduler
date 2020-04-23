@@ -21,3 +21,5 @@ npm test
 ```sh
 npm run storybook
 ```
+## Screenschots
+!["General view"](https://github.com/BilliMorgan/scheduler/blob/master/docs/newAppointment.png?raw=true)
