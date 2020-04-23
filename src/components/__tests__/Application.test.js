@@ -48,7 +48,7 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
       
-    expect(getByText(day, "no spots remaining")).toBeInTheDocument(); //spot remaining functionality does not work yet
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
@@ -79,8 +79,8 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
    
-    // 8. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument(); //spot remaining functionality does not work yet
+    // 8. Check that the DayListItem with the text "Monday" also has the text "1 spots remaining".
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument(); 
   });
 
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
