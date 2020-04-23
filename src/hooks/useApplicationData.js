@@ -7,20 +7,19 @@ export default function useApplicationData() {
     days: [],
     appointments: {},
     interviewers: {},
-
   });
 
   function setDay(day) {
     setState((prev) => ({ ...prev, day: day }));
   }
-  
-  
+
   useEffect(() => {
     Promise.all([
       Promise.resolve(axios.get("/api/days")),
       Promise.resolve(axios.get("/api/appointments")),
       Promise.resolve(axios.get("/api/interviewers")),
     ]).then((all) => {
+      //console.log(all);
       const [days, appointments, interviewers] = all;
       setState((prevState) => ({
         ...prevState,
@@ -31,7 +30,29 @@ export default function useApplicationData() {
     });
   }, []);
 
+  const updateSpots = (status) => {
+    const currentDay = state.days.filter((elem) => elem.name === state.day)[0];
+    console.log(currentDay.spots);
+    if (status === "minus") {
+      currentDay.spots -= 1;
+    }
+    if (status === "plus") {
+      currentDay.spots += 1;
+    }
+    const days = state.days.map((elem) => {
+      if (elem.id === currentDay.id) {
+        return currentDay;
+      }
+      return elem;
+    });
+    setState((prev) => ({ ...prev, days: [...days] }));
+  };
+
   function bookInterview(id, interview) {
+    let status = "";
+    if (state.appointments[id].interview === null) {
+    status = "minus"
+    }
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -40,10 +61,10 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-    console.log(appointment)
     return axios
       .put(`/api/appointments/${id}`, { ...appointment })
       .then((res) => {
+        updateSpots(status);
         setState({
           ...state,
           appointments: { ...appointments },
@@ -61,13 +82,12 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment,
     };
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then((res) => {
+    return axios.delete(`/api/appointments/${id}`).then((res) => {
+      updateSpots("plus");
       if (res) {
         setState((prev) => ({ ...prev, appointments: { ...appointments } }));
       }
     });
   }
-  return { state, setDay, bookInterview, cancelInterview };
+  return { state, setDay, bookInterview, cancelInterview, updateSpots };
 }
