@@ -41,13 +41,14 @@ describe("Application", () => {
     });
     fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
     fireEvent.click(getByText(appointment, "Save"));
-    //debug();
+
     expect(getByText(appointment, "on my way")).toBeInTheDocument();
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
     const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
-    expect(getByText(day, "1 spot remaining")).toBeInTheDocument(); //spot remaining functionality does not work yet
+      
+    expect(getByText(day, "no spots remaining")).toBeInTheDocument(); //spot remaining functionality does not work yet
   });
 
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
@@ -56,7 +57,7 @@ describe("Application", () => {
 
     // 2. Wait until the text "Archie Cohen" is displayed.
     await waitForElement(() => getByText(container, "Archie Cohen"));
-    //console.log(prettyDOM(container))
+    
     //3. Click the "Delete" button on the booked appointment.
     const appointment = getAllByTestId(
       container,
@@ -64,7 +65,7 @@ describe("Application", () => {
     ).find((appointment) => queryByText(appointment, "Archie Cohen"));
     fireEvent.click(queryByAltText(appointment, "Delete"));
 
-    //console.log(prettyDOM(container))are you sure?
+   
     // 4. Check that the confirmation message is shown.
     expect(getByText(appointment, "are you sure?")).toBeInTheDocument();
 
@@ -77,7 +78,7 @@ describe("Application", () => {
     const day = getAllByTestId(container, "day").find((day) =>
       queryByText(day, "Monday")
     );
-    //console.log(prettyDOM(container));
+   
     // 8. Check that the DayListItem with the text "Monday" also has the text "2 spots remaining".
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument(); //spot remaining functionality does not work yet
   });
@@ -155,13 +156,14 @@ describe("Application", () => {
     fireEvent.click(queryByText(appointment, "Confirm"));
     // 6. Check that the element with the text "Deleting" is displayed.
     expect(getByText(appointment, "good bye")).toBeInTheDocument();
-    
+
     await waitForElement(() =>
       getByText(appointment, "It's a delete error baby")
     );
-    expect(getByText(appointment, "It's a delete error baby")).toBeInTheDocument();
+    expect(
+      getByText(appointment, "It's a delete error baby")
+    ).toBeInTheDocument();
     fireEvent.click(getByAltText(appointment, "Close"));
-    //console.log(prettyDOM(container));
-    //debug();
+   
   });
 });
