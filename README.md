@@ -1,6 +1,8 @@
 # Interview Scheduler
-
-
+A single page application that allows students to book time with interviewers in one of time slots.
+Students can choose particular day, time, interviewer and create the appointment.
+There is option to edit, delete booking, change their name.
+The main app was created using React Hooks, components - with Storybook, tested with Jest.
 ## Setup
 
 Install dependencies with `npm install`.
