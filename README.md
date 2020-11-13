@@ -8,6 +8,8 @@ The main app was created using React Hooks, components - with Storybook, tested 
 
 ## Setup
 Install dependencies with `npm install`.
+Clone and instal beck-end server in the same same folder using link:
+
 
 ## Running Webpack Development Server
 `npm start`
