@@ -10,13 +10,13 @@ The main app was created using React Hooks, components - with Storybook, tested 
 Install dependencies with `npm install`.
 
 ## Running Webpack Development Server
-npm start
+`npm start`
 
 ## Running Jest Test Framework
-npm test
+`npm test`
 
 ## Running Storybook Visual Testbed
-npm run storybook
+`npm run storybook`
 
 ## Screenschots
 !["General view"](https://github.com/BilliMorgan/scheduler/blob/master/docs/newAppointment.png?raw=true)
