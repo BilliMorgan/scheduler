@@ -8,7 +8,7 @@ The main app was created using React Hooks, components - with Storybook, tested 
 
 ## Setup
 Install dependencies with `npm install`.
-Clone and instal beck-end server in the same same folder using link:
+Clone and instal beck-end server in the same folder using link:
 https://github.com/BilliMorgan/scheduler-api
 Install and seed database, run server.
 
