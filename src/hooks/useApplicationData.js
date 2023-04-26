@@ -8,18 +8,19 @@ export default function useApplicationData() {
     appointments: {},
     interviewers: {},
   });
+  const [isLoading, setIsLoading] = useState(false)
 
   function setDay(day) {
     setState((prev) => ({ ...prev, day: day }));
   }
 
   useEffect(() => {
+  setIsLoading(true)
     Promise.all([
       Promise.resolve(axios.get("/api/days")),
       Promise.resolve(axios.get("/api/appointments")),
       Promise.resolve(axios.get("/api/interviewers")),
     ]).then((all) => {
-      
       const [days, appointments, interviewers] = all;
       setState((prevState) => ({
         ...prevState,
@@ -27,6 +28,7 @@ export default function useApplicationData() {
         appointments: { ...appointments.data },
         interviewers: { ...interviewers.data },
       }));
+      setIsLoading(false)
     });
   }, []);
 
@@ -89,5 +91,12 @@ export default function useApplicationData() {
       }
     });
   }
-  return { state, setDay, bookInterview, cancelInterview, updateSpots };
+  return {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview,
+    updateSpots,
+    isLoading,
+  }
 }

@@ -5,6 +5,7 @@ import Appointment from "components/Appointment";
 import "hooks/useVisualMode";
 import useApplicationData from "hooks/useApplicationData";
 import "components/Application.scss";
+import Status from "./Appointment/Status";
 
 const {
   getAppointmentsForDay,
@@ -18,14 +19,18 @@ export default function Application(props) {
     setDay,
     bookInterview,
     cancelInterview,
+    isLoading
   } = useApplicationData();
+  console.log(state)
+  console.log(isLoading)
+
   const interviewers = getInterviewersForDay(state, state.day);
   const appointments = getAppointmentsForDay(state, state.day).map(
     (appointment) => {
       return (
         <Appointment
           key={appointment.id}
-          {...appointment} //was replaced  id={appointment.id} why?
+          {...appointment} 
           time={appointment.time}
           interview={getInterview(state, appointment.interview)}
           interviewers={interviewers}
@@ -55,10 +60,17 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {appointments}
-        <Appointment key="last" time="5pm" />
+        {isLoading && (
+          <Status message="Waking up the server. Please, refresh the page in a few seconds."></Status>
+        )}
+        {!isLoading && (
+          <>
+            {appointments}
+            <Appointment key="last" time="5pm" />
+          </>
+        )}
       </section>
     </main>
-  );
+  )
 }
 
