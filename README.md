@@ -1,5 +1,5 @@
 # Interview Scheduler
-https://5fa5b18815c044179f1e7dc5--amazing-benz-33c547.netlify.app
+https://amazing-benz-33c547.netlify.app/
 
 A single page application that allows students to book time with interviewers in one of time slots.
 Students can choose particular day, time, interviewer and create the appointment.
